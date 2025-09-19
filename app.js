@@ -21,4 +21,19 @@ const normalizarNombre = (txt) => {
   return t;
 };
 
+/** Elimina acentos para comparar sin tildes */
+const quitarAcentos = (s) => s.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 
+/** Compara nombres sin distinguir mayúsculas/acentos */
+const igualesSinAcentos = (a, b) =>
+  quitarAcentos(a).toLowerCase() === quitarAcentos(b).toLowerCase();
+
+// --- Estado ---
+const STORAGE_KEY = "amigo-secreto:nombres";
+/** @type {string[]} */
+let amigos = [];
+
+const $ = (sel) => document.querySelector(sel);
+const input = $("#amigo");
+const ulLista = $("#listaAmigos");
+const ulResultado = $("#resultado");
