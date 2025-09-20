@@ -37,3 +37,49 @@ const $ = (sel) => document.querySelector(sel);
 const input = $("#amigo");
 const ulLista = $("#listaAmigos");
 const ulResultado = $("#resultado");
+
+// Carga inicial desde localStorage
+try{
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (raw){
+        const parsed = JSON.parse(raw);
+        if (Array.isArray(parsed)) amigos = parsed.filter(Boolean);
+    }
+} catch (_) {}
+
+// Render
+function renderLista() {
+    //vaciamos primero
+    ulLista.innerHTML = "";
+    if (amigos.length === 0) {
+        ulLista.innerHTML = `<li class="name-item name-item--hint">Aún no hay nombres. ¡Agrega el primero!</li>`;
+        return;
+    }
+
+// fragmentar para evitar errores
+const frag = document.createDocumentFragment();
+amigos.forEach((nombre, idx) => {
+    const li = document.createElement("li");
+    li.className = "name-item";
+    li.setAttribute("role", "listem");
+
+    const span = document.createElement("span");
+    span.textContent = nombre;
+    span.className = "name-item__text";
+
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "name-item__remove";
+    btn.ariaLabel = `Eliminar ${nombre}`;
+    btn.textContent = "x";
+    btn.addEventListener("click", () => {
+        amigos.splice(idx, 1);
+        persistir();
+        renderLista();
+        //Si quitamos al ultimo amigo mostrado como resultado limpiamos
+        if (ulResultado.firstChild) ulResultado.innerHTML = "";
+        input.focus();
+    });
+
+})
+}
