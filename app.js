@@ -101,7 +101,7 @@
 
     //Validación básica
     if (!limpio) {
-      alert("Por favor, inserte un nombre válido.");
+      alert("Por favor, inserte un nombre válido .__.");
       input.focus();
       return;
     }
@@ -112,7 +112,7 @@
       // Pequeño detalle UX: resaltar el input y avisar
       input.classList.add("input--duplicado");
       setTimeout(() => input.classList.remove("input--duplicado"), 600);
-      alert(`“${limpio}” ya está en la lista.`);
+      alert(`“${limpio}” ya está en la lista :c`);
       input.select();
       return;
     }
@@ -127,7 +127,7 @@
   function sortearAmigo() {
     ulResultado.innerHTML = "";
     if (amigos.length === 0) {
-      alert("Agrega al menos un nombre antes de sortear.");
+      alert("Agrega al menos un nombre antes de sortear c:");
       input.focus();
       return;
     }
@@ -138,7 +138,7 @@
     //Render resultado
     const li = document.createElement("li");
     li.className = "result-item";
-    li.textContent = `Amigo secreto: ${ganador}`;
+    li.textContent = `Yujuuuu ${ganador} eres mi amigo secreto 7w7 `;
     ulResultado.appendChild(li);
 
     //Breve animación CSS si existe la clase

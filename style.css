@@ -160,3 +160,15 @@ ul {
 .button-draw:hover {
     background-color: var(--color-button-hover);
 }
+/* Extras suaves*/
+.name-item { display:flex; align-items:center; justify-content:space-between; gap:.5rem; }
+.name-item__text { flex:1; }
+.name-item__remove { border:none; background:#eee; cursor:pointer; padding:.15rem .45rem; border-radius:.4rem; font-size:1rem; line-height:1; }
+.name-item__remove:hover { background:#ddd; }
+.name-item--hint { opacity:.8; font-style:italic; }
+
+.input--duplicado { outline:2px solid #ff6b6b; }
+
+.result-item { font-weight:700; list-style:none; }
+@keyframes pop { 0%{transform:scale(.9); opacity:.8;} 100%{transform:scale(1); opacity:1;} }
+.result-item--pop { animation: pop .3s ease-out; }
